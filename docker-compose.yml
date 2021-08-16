@@ -1,0 +1,18 @@
+version: "3"
+services:
+  data:
+    build: ./data
+    expose:
+      - 80
+  compute:
+    build: ./compute
+    depends_on: 
+      - data
+    expose:
+      - 80
+  frontend:
+    build: ./frontend
+    depends_on:
+      - compute
+    ports:
+      - "5006:5006"
